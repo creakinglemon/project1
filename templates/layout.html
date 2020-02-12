@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron text-center text-white bg-primary mb-0 pb-2 pt-2">
+                <h1 class="display-3">BOOK DATABASE</h1>
+                <p class="lead">This is a simple database of books and reviews produced for CS50W, Project 1.</p>
+            </div>
+
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-3 p-1">
+                <!-- Toggler/collapsibe Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('search') }}">Search</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        {% if session.user_id %}
+                            <li class="nav-item">
+                                <span class="navbar-text">Hello {{ session.username }}!</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{ url_for('login') }}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" align="right" href="{{ url_for('register') }}">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul class="navbar-nav">
+                </div>
+            </nav>
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

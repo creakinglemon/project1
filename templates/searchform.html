@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search for a Book
+{% endblock %}
+
+{% block body %}
+<div class="card mx-auto p-4" style="width: 35rem">
+    <h2 class="card-title">Search for a book</h2>
+    <form action="{{ url_for('search') }}" method=post>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" name="author" id="author" placeholder="Author">
+        </div>
+        <div class="form-group">
+            <label for="isbn">ISBN</label>
+            <input type="text" class="form-control" name="isbn" id="isbn" placeholder="ISBN">
+        </div>
+        <button type="submit" class="btn btn-primary m-3"</button>Search</button>
+    </form>
+</div>
+{% endblock %}

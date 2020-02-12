@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book Database
+{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-center">
+        {% if books %}
+            <div class="col-6">
+                <h2>Top Rated Books</h2>
+                <ul class="list-group">
+                    {% for book in books %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="/books/{{ book.id }}">
+                                <h5>{{ book.title }}</h5> {{ book.author }}
+                            </a>
+                            <span class="badge badge-primary badge-pill">{{ book.average_score }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if reviews %}
+            <div class="col-6">
+                <h2>Most Recently Reviewed</h2>
+                <ul class="list-group">
+                    {% for review in reviews %}
+                        <a href="/books/{{ review.book_id }}" class="list-group-item">
+                            <div class="d-flex justify-content-between">
+                                <h5>{{ review.title }}</h5>
+                                <span class="badge badge-primary badge-pill">{{ review.rating }}</span>
+                            </div>
+                            Review by {{ review.name }}
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        {% if randombooks %}
+            <div class="col-6">
+                <h2>Some Random Books</h2>
+                <ul class="list-group">
+                    {% for randombook in randombooks %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="/books/{{ randombook.id }}">
+                                <h5>{{ randombook.title }}</h5> {{ randombook.author }}
+                            </a>
+                            <span class="badge badge-primary badge-pill">
+                                {% if randombook.average_score %}
+                                    {{ randombook.average_score }}
+                                {% else %}
+                                    Not Rated
+                                {% endif %}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <div class="card text-white bg-danger mb-3 mx-auto" style="max-width: 20rem;">
+        <div class="card-header">Error</div>
+        <div class="card-body">
+            <p class="card-text">{{ errortext }}</p>
+        </div>
+    </div>
+{% endblock %}

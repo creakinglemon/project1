@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search for a Book
+{% endblock %}
+
+{% block body %}
+    <h2>Books matching your search criteria:</h2>
+
+    <div>
+        <ul>
+            {% for book in data %}
+                <li><a href="/books/{{ book.id }}">{{ book.title }}, {{ book.author }}, {{ book.isbn }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
